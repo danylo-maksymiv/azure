@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Mempool{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Create Mempool</h1>
+<form method="post" class="card card-body">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+<a href="{% url 'create' %}" class="btn btn-secondary mt-3">Back to Create Menu</a>
+{% endblock %}

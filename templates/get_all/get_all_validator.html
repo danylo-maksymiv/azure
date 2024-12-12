@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Validators{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Validators</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Validator ID</th>
+            <th>Address</th>
+            <th>Withdrawal Address</th>
+            <th>ETH Staked</th>
+            <th>Status</th>
+            <th>Slashed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for validator in validators %}
+        <tr>
+            <!-- Початок форми -->
+            <form action="{% url 'update_validator' validator.validator_id %}" method="post">
+                {% csrf_token %}
+                <td>{{ validator.validator_id }}</td>
+                <td>{{ validator.address.address }}</td>
+                <td>
+                    <input type="text" name="withdrawal_address" value="{{ validator.withdrawal_address.address }}" class="form-control form-control-sm me-2">
+                </td>
+                <td>
+                    <input type="text" name="eth_staked" value="{{ validator.eth_staked }}" class="form-control form-control-sm me-2">
+                </td>
+                <td>
+                    <select name="status" class="form-select form-select-sm me-2">
+                        <option value="active" {% if validator.status == 'active' %}selected{% endif %}>Active</option>
+                        <option value="inactive" {% if validator.status == 'inactive' %}selected{% endif %}>Inactive</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="checkbox" name="slashed" {% if validator.slashed %}checked{% endif %} class="form-check-input me-2">
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-success me-2">Update</button>
+                    <a href="{% url 'delete_validator' validator.validator_id %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </form>
+            <!-- Кінець форми -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+{% endblock %}

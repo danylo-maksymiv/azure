@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Mempool Entries{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Mempool Entries</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Transaction Hash</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mempool in mempool_list %}
+        <tr>
+            <td>{{ mempool.transaction.transaction_hash }}</td>
+            <td>
+                <a href="{% url 'delete_mempool' mempool.transaction.transaction_hash %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+{% endblock %}

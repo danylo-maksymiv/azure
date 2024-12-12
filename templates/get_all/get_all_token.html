@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Tokens{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Tokens</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Contract Address</th>
+            <th>Symbol</th>
+            <th>Supply</th>
+            <th>Decimals</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for token in tokens %}
+        <form action="{% url 'update_token' token.contract.contract_address %}" method="post">
+            {% csrf_token %}
+            <tr>
+                <td>{{ token.contract.contract_address }}</td>
+                <td>
+                    <input type="text" name="symbol" value="{{ token.symbol }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="supply" value="{{ token.supply }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="decimals" value="{{ token.decimals }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="type" value="{{ token.type }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-success">Update</button>
+                    <a href="{% url 'delete_token' token.contract.contract_address %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        </form>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+{% endblock %}

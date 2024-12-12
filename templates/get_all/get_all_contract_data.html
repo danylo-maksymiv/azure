@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Contract Data{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Contract Data</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Contract Address</th>
+            <th>Source Code</th>
+            <th>Bytecode</th>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contract_data in contract_data_list %}
+        <tr>
+            <td>{{ contract_data.contract.contract_address }}</td>
+            <td>
+                <textarea id="source_code_{{ forloop.counter }}" class="form-control form-control-sm">{{ contract_data.source_code }}</textarea>
+            </td>
+            <td>
+                <textarea id="bytecode_{{ forloop.counter }}" class="form-control form-control-sm">{{ contract_data.bytecode }}</textarea>
+            </td>
+            <td>
+                <input type="text" id="name_{{ forloop.counter }}" value="{{ contract_data.name }}" class="form-control form-control-sm">
+            </td>
+            <td>
+                <input type="text" id="version_{{ forloop.counter }}" value="{{ contract_data.version }}" class="form-control form-control-sm">
+            </td>
+            <td>
+                <form action="{% url 'update_contract_data' contract_data.contract.contract_address %}" method="post">
+                    {% csrf_token %}
+                    <!-- Приховані поля -->
+                    <input type="hidden" name="source_code" id="hidden_source_code_{{ forloop.counter }}">
+                    <input type="hidden" name="bytecode" id="hidden_bytecode_{{ forloop.counter }}">
+                    <input type="hidden" name="name" id="hidden_name_{{ forloop.counter }}">
+                    <input type="hidden" name="version" id="hidden_version_{{ forloop.counter }}">
+                    <button type="submit" class="btn btn-sm btn-success" onclick="copyData({{ forloop.counter }})">Update</button>
+                </form>
+                <a href="{% url 'delete_contract_data' contract_data.contract.contract_address %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+
+<!-- Додаємо JavaScript для копіювання даних -->
+<script>
+    function copyData(counter) {
+        document.getElementById('hidden_source_code_' + counter).value = document.getElementById('source_code_' + counter).value;
+        document.getElementById('hidden_bytecode_' + counter).value = document.getElementById('bytecode_' + counter).value;
+        document.getElementById('hidden_name_' + counter).value = document.getElementById('name_' + counter).value;
+        document.getElementById('hidden_version_' + counter).value = document.getElementById('version_' + counter).value;
+    }
+</script>
+{% endblock %}

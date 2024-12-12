@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Transactions{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Transactions</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Transaction Hash</th>
+            <th>From Address</th>
+            <th>To Address</th>
+            <th>Block Hash</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.transaction_hash }}</td>
+            <td>{{ transaction.from_address }}</td>
+            <td>{{ transaction.to_address }}</td>
+            <td>{{ transaction.block.block_hash }}</td> <!-- Тут змінено -->
+            <td>
+                <a href="{% url 'delete_transaction' transaction.transaction_hash %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+{% endblock %}

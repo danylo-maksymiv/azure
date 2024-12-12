@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Графіки Plotly
+{% endblock %}
+
+{% block content %}
+    <h1>Графіки Plotly</h1>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <!-- Графік сумарної винагороди валідаторів -->
+        <h2>Сумарна винагорода валідаторів</h2>
+        <div>
+            {{ reward_graph_html|safe }}
+        </div>
+
+        <!-- Графік транзакцій валідаторів по днях -->
+        <h2>Кількість транзакцій валідаторів по днях</h2>
+        <div>
+            {{ transaction_graph_html|safe }}
+        </div>
+
+        <!-- Пай-чарт винагород -->
+        <h2>Розподіл сумарної винагороди за статусами</h2>
+        <div>
+            {{ pie_graph_html|safe }}
+        </div>
+
+        <!-- Scatter-графік -->
+        <h2>Залежність винагороди від висоти блоку</h2>
+        <div>
+            {{ scatter_graph_html|safe }}
+        </div>
+
+        <!-- Гістограма gas_used -->
+        <h2>Розподіл gas_used</h2>
+        <div>
+            {{ histogram_graph_html|safe }}
+        </div>
+
+        <!-- Агрегований графік -->
+        <h2>Середня складність за статусом блоку</h2>
+        <div>
+            {{ aggregator_graph_html|safe }}
+        </div>
+
+        <!-- Інтерактивний графік -->
+        <h2>Інтерактивний графік: Середня складність за статусом блоку</h2>
+        <div>
+            {{ interactive_graph_html|safe }}
+        </div>
+    {% endif %}
+{% endblock %}

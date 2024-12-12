@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Contracts{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Contracts</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Contract Address</th>
+            <th>Creator Address</th>
+            <th>Transaction Hash</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contract in contracts %}
+        <tr>
+            <td>{{ contract.contract_address }}</td>
+            <td>{{ contract.creator_address }}</td>
+            <td>{{ contract.transaction.transaction_hash }}</td>
+            <td>
+                <a href="{% url 'delete_contract' contract.contract_address %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+{% endblock %}

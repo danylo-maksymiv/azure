@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Графіки Bokeh
+{% endblock %}
+
+{% block content %}
+    <h1>Графіки Bokeh</h1>
+
+    <!-- Підключення BokehJS -->
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.4.3.min.js"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.3.min.js"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.3.min.js"></script>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <!-- Графік сумарної винагороди валідаторів -->
+        <h2>Сумарна винагорода валідаторів</h2>
+        <div>
+            {{ reward_script|safe }}
+            {{ reward_div|safe }}
+        </div>
+
+        <!-- Графік транзакцій -->
+        <h2>Кількість транзакцій валідаторів по днях</h2>
+        <div>
+            {{ transaction_script|safe }}
+            {{ transaction_div|safe }}
+        </div>
+
+        <!-- Пай-чарт -->
+        <h2>Розподіл сумарної винагороди за статусами</h2>
+        <div>
+            {{ pie_script|safe }}
+            {{ pie_div|safe }}
+        </div>
+
+        <!-- Scatter-графік -->
+        <h2>Залежність винагороди від висоти блоку</h2>
+        <div>
+            {{ scatter_script|safe }}
+            {{ scatter_div|safe }}
+        </div>
+
+        <!-- Histogram -->
+        <h2>Розподіл gas_used</h2>
+        <div>
+            {{ hist_script|safe }}
+            {{ hist_div|safe }}
+        </div>
+
+        <!-- Агрегований графік -->
+        <h2>Середня складність за статусом блоку</h2>
+        <div>
+            {{ aggregator_script|safe }}
+            {{ aggregator_div|safe }}
+        </div>
+        
+    {% endif %}
+{% endblock %}

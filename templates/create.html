@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Entities{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Create Entities</h1>
+<div class="list-group">
+    <a href="{% url 'create_address' %}" class="list-group-item list-group-item-action">Create Address</a>
+    <a href="{% url 'create_validator' %}" class="list-group-item list-group-item-action">Create Validator</a>
+    <a href="{% url 'create_block' %}" class="list-group-item list-group-item-action">Create Block</a>
+    <a href="{% url 'create_transaction' %}" class="list-group-item list-group-item-action">Create Transaction</a>
+    <a href="{% url 'create_transaction_data' %}" class="list-group-item list-group-item-action">Create Transaction Data</a>
+    <a href="{% url 'create_contract' %}" class="list-group-item list-group-item-action">Create Contract</a>
+    <a href="{% url 'create_contract_data' %}" class="list-group-item list-group-item-action">Create Contract Data</a>
+    <a href="{% url 'create_token' %}" class="list-group-item list-group-item-action">Create Token</a>
+    <a href="{% url 'create_mempool' %}" class="list-group-item list-group-item-action">Create Mempool</a>
+</div>
+{% endblock %}

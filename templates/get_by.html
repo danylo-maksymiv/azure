@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Get by Key{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Get Entities by Primary Key</h1>
+<div class="list-group">
+    <a href="{% url 'get_by_address' %}" class="list-group-item list-group-item-action">Get Address</a>
+    <a href="{% url 'get_by_validator' %}" class="list-group-item list-group-item-action">Get Validator</a>
+    <a href="{% url 'get_by_block' %}" class="list-group-item list-group-item-action">Get Block</a>
+    <a href="{% url 'get_by_transaction' %}" class="list-group-item list-group-item-action">Get Transaction</a>
+    <a href="{% url 'get_by_transaction_data' %}" class="list-group-item list-group-item-action">Get Transaction Data</a>
+    <a href="{% url 'get_by_contract' %}" class="list-group-item list-group-item-action">Get Contract</a>
+    <a href="{% url 'get_by_contract_data' %}" class="list-group-item list-group-item-action">Get Contract Data</a>
+    <a href="{% url 'get_by_token' %}" class="list-group-item list-group-item-action">Get Token</a>
+    <a href="{% url 'get_by_mempool' %}" class="list-group-item list-group-item-action">Get Mempool</a>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Entities{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Get All Entities</h1>
+<div class="list-group">
+    <a href="{% url 'get_all_address' %}" class="list-group-item list-group-item-action">All Addresses</a>
+    <a href="{% url 'get_all_validator' %}" class="list-group-item list-group-item-action">All Validators</a>
+    <a href="{% url 'get_all_block' %}" class="list-group-item list-group-item-action">All Blocks</a>
+    <a href="{% url 'get_all_transaction' %}" class="list-group-item list-group-item-action">All Transactions</a>
+    <a href="{% url 'get_all_transaction_data' %}" class="list-group-item list-group-item-action">All Transaction Data</a>
+    <a href="{% url 'get_all_contract' %}" class="list-group-item list-group-item-action">All Contracts</a>
+    <a href="{% url 'get_all_contract_data' %}" class="list-group-item list-group-item-action">All Contract Data</a>
+    <a href="{% url 'get_all_token' %}" class="list-group-item list-group-item-action">All Tokens</a>
+    <a href="{% url 'get_all_mempool' %}" class="list-group-item list-group-item-action">All Mempool Transactions</a>
+</div>
+{% endblock %}

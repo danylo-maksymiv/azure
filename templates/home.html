@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Welcome to the Blockchain Application</h1>
+    <p class="mt-4">
+        <a class="btn btn-primary btn-lg" href="{% url 'create' %}">Go to Create Section</a>
+        <a class="btn btn-success btn-lg" href="{% url 'get_by' %}">Go to Get by Key Section</a>
+        <a class="btn btn-info btn-lg" href="{% url 'get_all' %}">Go to Get All Section</a>
+    </p>
+</div>
+{% endblock %}

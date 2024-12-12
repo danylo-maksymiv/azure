@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Addresses{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Addresses</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Address</th>
+            <th>ETH Balance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for address in addresses %}
+        <tr>
+            <td>{{ address.address }}</td>
+            <td>
+                <form action="{% url 'update_address' address.address %}" method="get" class="d-inline">
+                    <input type="text" name="eth_balance" value="{{ address.eth_balance }}" class="form-control form-control-sm d-inline w-auto">
+                </form>
+            </td>
+            <td class="d-flex align-items-center">
+                <form action="{% url 'update_address' address.address %}" method="get" class="me-2">
+                    <button type="submit" class="btn btn-sm btn-success">Update</button>
+                </form>
+                <a href="{% url 'delete_address' address.address %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Get All Transaction Data{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Transaction Data</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Transaction Hash</th>
+            <th>Status</th>
+            <th>Value</th>
+            <th>ETH Price</th>
+            <th>Gas Limit</th>
+            <th>Base Fee</th>
+            <th>Max Fee</th>
+            <th>Priority Fee</th>
+            <th>Input Data</th>
+            <th>Timestamp</th>
+            <th>Gas Used</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction_data in transaction_data %}
+        <tr>
+            <form action="{% url 'update_transaction_data' transaction_data.transaction.transaction_hash %}" method="post">
+                {% csrf_token %}
+                <td>{{ transaction_data.transaction.transaction_hash }}</td>
+                <td>
+                    <select name="status" class="form-select form-select-sm">
+                        {% for choice_value, choice_label in status_choices %}
+                        <option value="{{ choice_value }}" {% if transaction_data.status == choice_value %}selected{% endif %}>{{ choice_label }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="value" value="{{ transaction_data.value }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="eth_price" value="{{ transaction_data.eth_price }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="gas_limit" value="{{ transaction_data.gas_limit }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="base_fee" value="{{ transaction_data.base_fee }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="max_fee" value="{{ transaction_data.max_fee }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="priority_fee" value="{{ transaction_data.priority_fee }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="input_data" value="{{ transaction_data.input_data }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="datetime-local" name="timestamp" value="{{ transaction_data.timestamp|date:'Y-m-d\\TH:i:s' }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input type="text" name="gas_used" value="{{ transaction_data.gas_used }}" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-success">Update</button>
+                    <a href="{% url 'delete_transaction_data' transaction_data.transaction.transaction_hash %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'get_all' %}" class="btn btn-secondary mt-4">Back</a>
+{% endblock %}
