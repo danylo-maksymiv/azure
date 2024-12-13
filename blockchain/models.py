@@ -6,7 +6,7 @@ class Address(models.Model):
     eth_balance = models.DecimalField(max_digits=28, decimal_places=0, default=0)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'address'
 
     def __str__(self):
@@ -18,14 +18,14 @@ class Validator(models.Model):
     address = models.OneToOneField(
         Address,
         related_name='validator_address',
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='address',
         db_column='address'
     )
     withdrawal_address = models.ForeignKey(
         Address,
         related_name='validator_withdrawal_address',
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='address',
         db_column='withdrawal_address'
     )
@@ -58,7 +58,7 @@ class Block(models.Model):
     block_hash = models.CharField(max_length=64, primary_key=True, unique=True)
     validator = models.ForeignKey(
         Validator,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='validator_id',
         db_column='validator_id',
         related_name='blocks'  # Додаємо related_name
@@ -90,20 +90,20 @@ class Transaction(models.Model):
     from_address = models.ForeignKey(
         Address,
         related_name='from_address',
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='address',
         db_column='from_address'
     )
     to_address = models.ForeignKey(
         Address,
         related_name='to_address',
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='address',
         db_column='to_address'
     )
     block = models.ForeignKey(
         Block,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='block_hash',
         db_column='block_hash',
         related_name='transactions'  # Додаємо related_name
@@ -129,7 +129,7 @@ class TransactionData(models.Model):
 
     transaction = models.OneToOneField(
         Transaction,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         primary_key=True,
         to_field='transaction_hash',
         db_column='transaction_hash'  # Вказуємо ім'я стовпця
@@ -159,13 +159,13 @@ class Contract(models.Model):
     creator_address = models.ForeignKey(
         Address,
         related_name='contract_creator_address',
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='address',
         db_column='creator_address'  # Вказуємо ім'я стовпця
     )
     transaction = models.OneToOneField(
         Transaction,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         to_field='transaction_hash',
         db_column='transaction_hash'  # Вказуємо ім'я стовпця
     )
@@ -179,7 +179,7 @@ class Contract(models.Model):
 class ContractData(models.Model):
     contract = models.OneToOneField(
         Contract,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         primary_key=True,
         to_field='contract_address',
         db_column='contract_address'  # Вказуємо ім'я стовпця
@@ -198,7 +198,7 @@ class ContractData(models.Model):
 class Token(models.Model):
     contract = models.OneToOneField(
         Contract,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         primary_key=True,
         to_field='contract_address',
         db_column='contract_address'  # Вказуємо ім'я стовпця
@@ -217,7 +217,7 @@ class Token(models.Model):
 class Mempool(models.Model):
     transaction = models.OneToOneField(
         Transaction,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         primary_key=True,
         to_field='transaction_hash',
         db_column='transaction_hash'  # Вказуємо ім'я стовпця
@@ -226,3 +226,5 @@ class Mempool(models.Model):
     class Meta:
         managed = False
         db_table = 'mempool'
+
+

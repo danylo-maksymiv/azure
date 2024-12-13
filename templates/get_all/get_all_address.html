@@ -17,14 +17,13 @@
         <tr>
             <td>{{ address.address }}</td>
             <td>
-                <form action="{% url 'update_address' address.address %}" method="get" class="d-inline">
+                <form action="{% url 'update_address' address.address %}" method="post" class="d-inline">
+                    {% csrf_token %}
                     <input type="text" name="eth_balance" value="{{ address.eth_balance }}" class="form-control form-control-sm d-inline w-auto">
+                    <button type="submit" class="btn btn-sm btn-success">Update</button>
                 </form>
             </td>
             <td class="d-flex align-items-center">
-                <form action="{% url 'update_address' address.address %}" method="get" class="me-2">
-                    <button type="submit" class="btn btn-sm btn-success">Update</button>
-                </form>
                 <a href="{% url 'delete_address' address.address %}" class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>

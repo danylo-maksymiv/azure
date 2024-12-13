@@ -19,8 +19,8 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'create' %}">Create</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'get_by' %}">Get by Key</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'get_all' %}">Get All</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'plotly_graph' %}">Plotly Graph</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'bokeh_graph' %}">Bokeh Graph</a></li>    
+                        <li class="nav-item"><a class="nav-link" href="{% url 'plotly_dashboard' %}">Plotly Graph</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'bokeh_dashboard' %}">Bokeh Graph</a></li>    
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}

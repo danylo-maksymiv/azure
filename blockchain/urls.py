@@ -40,56 +40,30 @@ urlpatterns = [
     path('get_all/mempool/', views.get_all_mempool, name='get_all_mempool'),
     path('update/address/<str:pk>/', views.update_address, name='update_address'),
     path('delete/address/<str:pk>/', views.delete_address, name='delete_address'),
-
     path('update/validator/<int:pk>/', views.update_validator, name='update_validator'),
     path('delete/validator/<int:pk>/', views.delete_validator, name='delete_validator'),
-
     path('update/block/<str:pk>/', views.update_block, name='update_block'),
     path('delete/block/<str:pk>/', views.delete_block, name='delete_block'),
-
     path('update/transaction/<str:pk>/', views.update_transaction, name='update_transaction'),
     path('delete/transaction/<str:pk>/', views.delete_transaction, name='delete_transaction'),
-
     path('update/transaction_data/<str:pk>/', views.update_transaction_data, name='update_transaction_data'),
     path('delete/transaction_data/<str:pk>/', views.delete_transaction_data, name='delete_transaction_data'),
-
     path('update/contract/<str:pk>/', views.update_contract, name='update_contract'),
     path('delete/contract/<str:pk>/', views.delete_contract, name='delete_contract'),
-
     path('update/contract_data/<str:pk>/', views.update_contract_data, name='update_contract_data'),
     path('delete/contract_data/<str:pk>/', views.delete_contract_data, name='delete_contract_data'),
-
     path('update/token/<str:pk>/', views.update_token, name='update_token'),
     path('delete/token/<str:pk>/', views.delete_token, name='delete_token'),
-
     path('update/mempool/<str:pk>/', views.update_mempool, name='update_mempool'),
     path('delete/mempool/<str:pk>/', views.delete_mempool, name='delete_mempool'),
     path('api/address/<str:pk>/', AddressDetail.as_view(), name='address_detail'),
     path('api/address/', AddressDetail.as_view(), name='address_create'),
-    path('api/address/<str:pk>/', AddressDetail.as_view(), name='address_create'),
     path('api/validator/<int:pk>/', ValidatorDetail.as_view(), name='validator_detail'),
     path('api/validator/', ValidatorDetail.as_view(), name='validator_create'),
     path('api/mempool/<str:pk>/', MempoolDetail.as_view(), name='mempool_detail'),
     path('api/mempool/', MempoolDetail.as_view(), name='mempool_create'),
-    path('graphs/plotly/', views.plotly_graph, name='plotly_graph'),
-    path('graphs/bokeh/', views.bokeh_graph, name='bokeh_graph'),
-
-    # у файлі urls.py
     path('graphs/plotly/dashboard/', views.plotly_dashboard, name='plotly_dashboard'),
     path('graphs/bokeh/dashboard/', views.bokeh_dashboard, name='bokeh_dashboard'),
-# Додайте ці рядки в ваш urls.py (після інших path):
-path('graphs/plotly/reward_status_pie/', views.plotly_reward_status_pie, name='plotly_reward_status_pie'),
-path('graphs/bokeh/reward_status_pie/', views.bokeh_reward_status_pie, name='bokeh_reward_status_pie'),
-
-path('graphs/plotly/daily_transactions_line/', views.plotly_daily_transactions_line, name='plotly_daily_transactions_line'),
-path('graphs/bokeh/daily_transactions_line/', views.bokeh_daily_transactions_line, name='bokeh_daily_transactions_line'),
-
-path('graphs/plotly/block_scatter/', views.plotly_block_scatter, name='plotly_block_scatter'),
-path('graphs/bokeh/block_scatter/', views.bokeh_block_scatter, name='bokeh_block_scatter'),
-
-path('graphs/plotly/gas_used_histogram/', views.plotly_gas_used_histogram, name='plotly_gas_used_histogram'),
-path('graphs/bokeh/gas_used_histogram/', views.bokeh_gas_used_histogram, name='bokeh_gas_used_histogram'),
-    path('graphs/bokeh/interactive_difficulty/', views.bokeh_interactive_difficulty,name='bokeh_interactive_difficulty'),
 
 ]
 
