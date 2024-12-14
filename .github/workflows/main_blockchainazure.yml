@@ -59,9 +59,11 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
+
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'blockchainazure'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_68ECA866A7224CDC96DE9E459306F735 }}
