@@ -69,4 +69,4 @@ jobs:
         with:
           app-name: 'blockchainazure'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_467d7a661249463ea040a81619b0ff03 }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
