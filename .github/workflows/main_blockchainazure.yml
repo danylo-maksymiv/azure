@@ -65,5 +65,9 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'blockchainazure'
-          slot-name: 'dmd9hqc0bjescnhn'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_68ECA866A7224CDC96DE9E459306F735 }}
+
+#git add .
+#git commit -m "let me die v20"
+#git push origin main
